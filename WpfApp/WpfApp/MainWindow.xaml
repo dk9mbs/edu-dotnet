@@ -1,0 +1,13 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="361.262" Width="563.985">
+    <Grid Margin="0,0,2,-3">
+        <Frame Content="Frame" HorizontalAlignment="Left" Height="333" Margin="10,0,0,0" VerticalAlignment="Top" Width="544"/>
+
+    </Grid>
+</Window>

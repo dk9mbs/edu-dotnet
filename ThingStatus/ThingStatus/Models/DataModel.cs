@@ -25,6 +25,7 @@ namespace Mp.Thingstatus.Models
         public virtual DbSet<Thing> Things { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optBuilder)
         {
             optBuilder.UseSqlServer(@"Server=localhost\Dev;Database=Things;Trusted_Connection=True;");

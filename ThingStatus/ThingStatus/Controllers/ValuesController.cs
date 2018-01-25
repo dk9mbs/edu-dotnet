@@ -3,24 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Mp.Thingstatus.Models;
 
-namespace ThingStatus.Controllers
+namespace Mp.Thingstatus.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Location> Get()
         {
-            return new string[] { "value1", "value2" };
+            var locations = new List<Location>() { };
+            using (var context = new DataContext() )
+            {
+                locations = (from l in context.Locations 
+                    select new Location() { LocationId=l.LocationId, Description=l.Description } ).ToList<Location>()  ; 
+            }
+
+            return locations;
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{locationId}")]
+        public Location Get(String locationId)
         {
-            return "value";
+            Location location = null;
+            using (var context = new DataContext())
+            {
+                location = (from l in context.Locations
+                    where l.LocationId== locationId
+                            select new Location() { LocationId = l.LocationId, Description = l.Description }).Single<Location>();
+            }
+            return location;
         }
 
         // POST api/values

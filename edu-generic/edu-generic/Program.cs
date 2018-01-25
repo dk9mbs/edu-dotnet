@@ -2,6 +2,18 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
+
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+
 namespace edu.csharp.generic
 {
     public class Thing
@@ -19,6 +31,7 @@ namespace edu.csharp.generic
 
     public class DataContext : DbContext
     {
+        public DataContext() { }
         public virtual DbSet<Thing> Things { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
 
@@ -35,15 +48,21 @@ namespace edu.csharp.generic
 
             using (var db = new DataContext())
             {
-                Location loc = new Location() { LocationId = "szbad", Description = "Braunschweig" };
+                Location loc = new Location() { LocationId = Guid.NewGuid().ToString() , Description = "Braunschweig" };
                 db.Locations.Add(loc);
-                //context.SaveChanges();
-                
-                //var test = context.Locations.To
-                var test = (from b in db.Locations select b);
+                db.SaveChanges();
+
+                //(IQueryable<Location>)
+                var locs = (from b in db.Locations where b.LocationId == "szbad" select new { b.LocationId, b.Description });
+                var things = (from a in db.Things select a);
+                                
+                foreach (var tmp in locs)
+                {
+                    Console.WriteLine(tmp.LocationId+ " "+tmp.Description);
+                }
+
             }
 
-            Console.WriteLine("T");
             Console.ReadLine();
         }
     }

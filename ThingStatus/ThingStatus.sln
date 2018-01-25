@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingStatus", "ThingStatus\ThingStatus.csproj", "{ABAFDD24-F6DC-4073-9937-B10F4E45E43E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABAFDD24-F6DC-4073-9937-B10F4E45E43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABAFDD24-F6DC-4073-9937-B10F4E45E43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABAFDD24-F6DC-4073-9937-B10F4E45E43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABAFDD24-F6DC-4073-9937-B10F4E45E43E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {548651DE-444C-41E6-A750-B919DE5D59C9}
+	EndGlobalSection
+EndGlobal

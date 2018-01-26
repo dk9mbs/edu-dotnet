@@ -43,20 +43,37 @@ namespace Mp.Thingstatus.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Location location)
         {
+            using(var context = new DataContext()) 
+            {
+                location.LocationId = Guid.NewGuid().ToString();                
+                context.Add<Location>(location);
+                context.SaveChanges();
+            }
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut("{locationId}")]
+        public void Put(string locationId, [FromBody]Location location)
         {
+            using (var context = new DataContext())
+            {
+                location.LocationId = locationId;
+                context.Update<Location>(location);
+                context.SaveChanges();
+            }
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{locationId}")]
+        public void Delete(string locationId)
         {
+            using (var context = new DataContext())
+            {
+                context.Remove<Location>(new Location() { LocationId = locationId });
+                context.SaveChanges();
+            }
         }
     }
 }

@@ -8,14 +8,19 @@ namespace Mp.Thingstatus.Models
 {
     public class Thing
     {
+        [Newtonsoft.Json.JsonProperty("id")]
         public String Id { get; set; }
+        [Newtonsoft.Json.JsonProperty("description")]
         public String Description { get; set; }
+        [Newtonsoft.Json.JsonProperty("location")]
         public Location Location { get; set; }
     }
 
     public class Location
     {
+        [Newtonsoft.Json.JsonProperty("locationid")]
         public string LocationId { get; set; }
+        [Newtonsoft.Json.JsonProperty("description")]
         public string Description { get; set; }
     }
 

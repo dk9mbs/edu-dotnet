@@ -28,7 +28,12 @@ namespace Mp.Crm.DBMigration
                 Entity entity = (Entity)context.InputParameters["Target"];
                 var calculatedEntity = new Entity(entity.LogicalName, entity.Id);
                 tracer.Trace(entity.LogicalName);
-                
+
+                if (!entity.Attributes.ContainsKey("mp_createdby")) throw new Exception("Attribute mb_createdby not exists!");
+                if (!entity.Attributes.ContainsKey("mp_createdon")) throw new Exception("Attribute mb_createdon not exists!");
+                if (!entity.Attributes.ContainsKey("mp_modifiedby")) throw new Exception("Attribute mb_modifiedby not exists!");
+                if (!entity.Attributes.ContainsKey("mp_modifiedon")) throw new Exception("Attribute mb_modifiedon not exists!");
+
                 EntityReference createdUser = entity.GetAttributeValue<EntityReference>("mp_createdby");
                 DateTime createdDate = entity.GetAttributeValue<DateTime>("mp_createdon");
 

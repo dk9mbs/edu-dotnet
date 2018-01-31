@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.Serialization.Json;
 
 namespace De.Dk9mbs.Edu.Restclient
 {
@@ -30,23 +31,35 @@ namespace De.Dk9mbs.Edu.Restclient
             InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ProcessRepositories().Wait();
+            var locations = ProcessRepositories().Result;
+
+            foreach(var loc in locations)
+            {
+                System.Diagnostics.Trace.WriteLine(loc.LocationId);
+            }
+
         }
 
 
-        private static async Task ProcessRepositories()
+        private async Task<List<Location>> ProcessRepositories()
         {
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
             client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
 
-            var stringTask = client.GetStringAsync("https://api.github.com/orgs/dotnet/repos");
+            //var stringTask = client.GetStringAsync("http://localhost:56625/api/values");
+            //var msg = await stringTask;
+            //System.Diagnostics.Trace.WriteLine(msg);
 
-            var msg = await stringTask;
-            Console.Write(msg);
+            
+            var serializer = new DataContractJsonSerializer(typeof(List<Location>));
+            var streamTask = client.GetStreamAsync("http://localhost:56625/api/values");
+            var repositories = serializer.ReadObject(await streamTask) as List<Location>;
+            return repositories;
+
         }
 
 

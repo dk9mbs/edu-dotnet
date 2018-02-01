@@ -1,0 +1,14 @@
+﻿<Window x:Class="De.Dk9mbs.Edu.Restclient.Test"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:De.Dk9mbs.Edu.Restclient"
+        mc:Ignorable="d"
+        Title="Test" Height="300" Width="300">
+    <DockPanel>
+        <ScrollViewer Height="211" Margin="0,58,0,0" VerticalAlignment="Top" >
+            <Separator RenderTransformOrigin="0.483,0.772" Height="211" Margin="0" Width="292"/>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

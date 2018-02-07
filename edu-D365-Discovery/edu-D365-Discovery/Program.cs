@@ -131,8 +131,8 @@ namespace Microsoft.Crm.Sdk.Samples
         static public void Main(string[] args)
         {
             IOrganizationService service = CRUDOptions.createOrganisationProxy();
-            CRUDOptions.update(service);
-            CRUDOptions.create(service);
+            //CRUDOptions.update(service);
+            //CRUDOptions.create(service);
 
             DataCollection<Entity> products = CRUDOptions.getOpportunityProducts(service, new Guid("840CFD52-0FF6-E711-A951-000D3A296791"));
             foreach (Entity entity in products){

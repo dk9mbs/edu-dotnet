@@ -33,6 +33,17 @@ namespace Mp.Crm.DBMigration
                         entity.SetValue("createdby", createdUser);
                         entity.SetValue("createdon", createdDate);
                     }
+
+                    EntityReference modifiedUser = entity.GetAttributeValue<EntityReference>("mp_modifiedby");
+                    DateTime modifiedDate = entity.GetAttributeValue<DateTime>("mp_modifiedon");
+                    EntityReference modifiedonbehalfby = entity.GetAttributeValue<EntityReference>("mp_modifiedonbehalfby");
+                    tracer.Trace($"Modified Date:{modifiedDate}");
+                    if (!(modifiedUser == null | modifiedDate == null))
+                    {
+                        entity.SetValue("modifiedby", modifiedUser);
+                        entity.SetValue("modifiedon", modifiedDate);
+                    }
+
                 }
 
                 if (context.MessageName == "Update")
@@ -43,14 +54,14 @@ namespace Mp.Crm.DBMigration
                     EntityReference modifiedUser = src.GetAttributeValue<EntityReference>("mp_modifiedby");
                     DateTime modifiedDate = src.GetAttributeValue<DateTime>("mp_modifiedon");
                     EntityReference modifiedonbehalfby = src.GetAttributeValue<EntityReference>("mp_modifiedonbehalfby");
-
+                    tracer.Trace($"Modified Date:{modifiedDate}");
                     if (!(modifiedUser == null | modifiedDate == null))
                     {
                         entity.SetValue("modifiedby", modifiedUser);
                         entity.SetValue("modifiedon", modifiedDate);
                     }
 
-                    entity.SetValue("modifiedonbehalfby", modifiedonbehalfby);
+                    //entity.SetValue("modifiedonbehalfby", modifiedonbehalfby);
                 }
             }
             catch (Exception e)

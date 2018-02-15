@@ -10,7 +10,7 @@ using Mp.Thingstatus.Models;
 
 namespace Mp.Thingstatus.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/test")]
     public class ValuesController : Controller
     {
         // GET api/values

@@ -24,17 +24,17 @@ namespace Mp.Thingstatus.Models
         public string Description { get; set; }
     }
 
-    public class DataContext : DbContext
+
+    public class ConfigurationFile
     {
-        public DataContext() { }
-        public virtual DbSet<Thing> Things { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
+        [Newtonsoft.Json.JsonProperty("profile")]
+        public string Profile { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("path")]
+        public string Path { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optBuilder)
-        {
-            optBuilder.UseSqlServer(@"Server=localhost\Dev;Database=Things;Trusted_Connection=True;");
-        }
-
+        [Newtonsoft.Json.JsonProperty("data")]
+        public string Data { get; set; }
     }
+
 }
